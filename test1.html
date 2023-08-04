@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Management Systems Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 40px;
+            padding-top: 50px ;
+            margin-top: 200px;
+            color: #4CAF50; /* Green */
+        }
+
+        .question-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        #submit-btn {
+            margin-top: 20px;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        #timer {
+            font-size: 18px;
+            color: #4CAF50; /* Green */
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #4CAF50; /* Green */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            }
+        button:hover {
+        background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Database Management Systems Quiz</h1>
+        <div id="timer">Time left: <span id="countdown">10:00</span></div>
+        <form action="score1.php" method="post" id="quiz-form">
+            <div class="question-container">
+                <p>1. Which statement is used to delete data from a database?</p>
+                <ul>
+                    <li><input type="radio" name="q1" value="SELECT">SELECT</li>
+                    <li><input type="radio" name="q1" value="DELETE">DELETE</li>
+                    <li><input type="radio" name="q1" value="UPDATE">UPDATE</li>
+                </ul>
+            </div>
+            <div class="question-container">
+                <p>2. Which of the following is a relational database management system?</p>
+                <ul>
+                    <li><input type="radio" name="q2" value="MySQL">MySQL</li>
+                    <li><input type="radio" name="q2" value="MongoDB">MongoDB</li>
+                    <li><input type="radio" name="q2" value="SQLite">SQLite</li>
+                </ul>
+            </div>
+            <div class="question-container">
+                <p>3. What is the purpose of the SQL SELECT statement?</p>
+                <ul>
+                    <li><input type="radio" name="q3" value="Insert data">Insert data</li>
+                    <li><input type="radio" name="q3" value="Delete data">Delete data</li>
+                    <li><input type="radio" name="q3" value="Retrieve data">Retrieve data</li>
+                </ul>
+            </div>
+            <div class="submit-button">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Set a timer to submit the form after 10 minutes
+        var timeLeft = 600; // 10 minutes in seconds
+        var countdownDisplay = document.getElementById("countdown");
+
+        function updateTimer() {
+            var minutes = Math.floor(timeLeft / 60);
+            var seconds = timeLeft % 60;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            countdownDisplay.textContent = minutes + ":" + seconds;
+            timeLeft--;
+
+            if (timeLeft < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("quiz-form").submit();
+            }
+        }
+
+        var timerInterval = setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
